@@ -1,6 +1,7 @@
 from django.db import models
 from rapidsms.models import Connection
-from rapidsms_httprouter.models import mass_text_sent, Message
+#from rapidsms_httprouter.models import mass_text_sent, Message
+from rapidsms_httprouter.models import Message
 from poll.models import poll_started
 from django.db.models.signals import pre_save
 
@@ -33,6 +34,6 @@ def blacklist(sender, **kwargs):
         else:
             m.status = 'Q'
 
-mass_text_sent.connect(bulk_process, weak=False)
+#mass_text_sent.connect(bulk_process, weak=False)
 poll_started.connect(bulk_process_poll, weak=False)
 #pre_save.connect(blacklist, sender=Message, weak=False)
