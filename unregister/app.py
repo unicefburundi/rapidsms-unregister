@@ -14,7 +14,7 @@ class App (AppBase):
             for b in Blacklist.objects.filter(connection=message.connection):
                 b.delete()
 #            message.respond(getattr(settings,'OPT_IN_CONFIRMATION',''))
-            Message.objects.create(text=getattr(settings,'OPT_IN_CONFIRMATION',''), direction='O', connection=message.connection, status='Q')
+#            Message.objects.create(text=getattr(settings,'OPT_IN_CONFIRMATION',''), direction='O', connection=message.connection, status='Q')
             return True
         elif Blacklist.objects.filter(connection=message.connection).count():
             return True
