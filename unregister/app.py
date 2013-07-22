@@ -26,6 +26,12 @@ class App (AppBase):
         return False
 
     def outgoing(self, msg):
-        if Blacklist.objects.filter(connection=msg.connection).count():
-            return False
+#         if Blacklist.objects.filter(connection=msg.connection).count():
+#             return False
+        try:
+            connections = msg['connections']
+        except TypeError:
+            connections = [msg.connections]
+        for connection in connections:
+            Blacklist.objects.filter(connection=connection).count()
         return True    
